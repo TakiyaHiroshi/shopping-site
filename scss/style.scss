@@ -42,6 +42,18 @@ $mbp_width : 700px;
 	}
 }
 
+@mixin cartBreakpoint {
+	@media only screen and (min-width: 780px) {
+		@content;
+	}
+}
+
+@mixin priceqtyBreakpoint {
+	@media only screen and (min-width: 997px) {
+		@content;
+	}
+}
+
 @mixin linkIcon($color: #fff, $rotate: 45) {
 	$rotate_degree: $rotate + deg;
 	&:before {
@@ -217,7 +229,7 @@ main {
 			width: 220px;
 		}
 	}
-	
+
 	@include menuBreakpoint{
 		#contents{
 			width: 100%;
@@ -550,6 +562,45 @@ main {
 		color: $dark_gray;
 	}
 
+	h4{
+		@include fontsize(16);
+		color: $dark_gray;
+
+		&:before{
+			content: "■ ";
+		}
+	}
+
+	%table_border{
+		border: solid 1px $light_gray;
+		border-collapse: collapse;
+		background-color: $basecolor;
+		text-align: center;
+	}
+	%table_contents{
+		padding: 1em;
+		color: $dark_gray;
+	}
+	table{
+		@extend %table_border;
+
+		th{
+			@extend %table_contents;
+			@extend %table_border;
+			font-weight: normal;
+		}
+
+		td{
+			@extend %table_contents;
+			@extend %table_border;
+			background-color: white;
+		}
+
+		input[type="checkbox"]{
+			margin-bottom: 0;
+		}
+	}
+
 	.products_name{
 		margin-bottom: 15px;
 		padding-bottom: 30px;
@@ -584,7 +635,7 @@ main {
 			display: flex;
 			flex-direction: row;
 			flex-wrap: wrap;
-			justify-content:flex-start;
+			justify-content: flex-start;
 
 			p{
 				margin: 0{
@@ -602,43 +653,38 @@ main {
 	}
 
 	.color_size{
-		%table_border{
-			border: solid 1px $light_gray;
-			border-collapse: collapse;
-			background-color: $basecolor;
-			text-align: center;
-		}
 		%table_width{
-			padding: 1em 0;
 			width: 33%;
 		}
 
 		table{
-			@extend %table_border;
-
 			th{
-				@extend %table_border;
 				@extend %table_width;
 			}
 
 			td{
-				@extend %table_border;
 				background-color: white;
-				@extend %table_width;
-			}
-
-			input[type="checkbox"]{
-				margin-bottom: 0;
 			}
 		}
 	}
 
+	.price_cart{
+		margin-bottom: 30px;
+
+		@include cartBreakpoint{
+			margin-bottom: 0;
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+
 	.price_qty{
-		%mb0 {margin-bottom: 0};
+		margin-bottom: 30px;
 
 		div{
 		}
 
+		%mb0 {margin-bottom: 0};
 		h3{
 			@extend %mb0;
 			width: 14rem;
@@ -652,13 +698,19 @@ main {
 			}
 		}
 
+		%price_qty_flex{
+			padding: 1em 0;
+			display: flex;
+			align-items: baseline;
+			border-top: solid 1px $light_gray;
+		}
+
 		.price{
+			@extend %price_qty_flex;
+
 			h3{
+				display: inline-block;
 				text-transform: uppercase;
-			}
-
-			p{
-
 			}
 
 			.txt{
@@ -670,6 +722,62 @@ main {
 				}
 			}
 		}
+
+		.qty{
+			@extend %price_qty_flex;
+			border-bottom: solid 1px $light_gray;
+		}
+
+		@include priceqtyBreakpoint{
+			width: 50%;
+		}
+	}
+
+	.add_cart{
+		text-align: center;
+
+		p{
+			margin-bottom: 0;
+			line-height: 1px;
+		}
+
+		a{
+			&:hover{
+				opacity: 0.6;
+			}
+		}
+	}
+
+	.products_descripition{
+		%mb1{margin-bottom: 1em;}
+
+		h3{
+			@extend %mb1;
+			padding-bottom: 1em;
+			border-bottom: solid 1px $light_gray;
+		}
+
+		h4{
+			@extend %mb1;
+		}
+
+		p{
+			@extend %mb1;
+		}
+
+		table{
+			th{
+				width: 5em;
+			}
+
+			td{
+				text-align: left;
+			}
+		}
+	}
+
+	@include PCwidth{
+		padding: 40px 60px;
 	}
 }
 
