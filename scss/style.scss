@@ -8,6 +8,7 @@ $dark_gray : #887f69;
 $light_gray: #e2ddd4;
 $gray      : #b0b0b0;
 $dark_red  : #9d1a2d;
+$ruby      : #e80f66;
 $item_bg   : white;
 $pc_width  : 940px;
 $mbp_width : 700px;
@@ -31,6 +32,12 @@ $mbp_width : 700px;
 
 @mixin menuBreakpoint {
 	@media only screen and (min-width: 639px) and (max-width: 997px) {
+		@content;
+	}
+}
+
+@mixin bodyBreakpoint {
+	@media only screen and (min-width: 640px) and (max-width: 740px) {
 		@content;
 	}
 }
@@ -208,6 +215,12 @@ main {
 
 		#sub_navi{
 			width: 220px;
+		}
+	}
+	
+	@include menuBreakpoint{
+		#contents{
+			width: 100%;
 		}
 	}
 }
@@ -448,12 +461,10 @@ main {
 		margin: 0;
 		background-color: $dark_gray;
 		text-transform: uppercase;
-		@include fontsize(16);
+		@include fontsize(14);
 
 		&.no_link{
-			padding: 1rem {
-				bottom: 0.5rem;
-			};
+			padding: 1rem;
 			color: white;
 		}
 
@@ -483,13 +494,12 @@ main {
 			margin: 0 {
 				bottom: 1px;
 			}
+			@include fontsize(14);
 
 			a{
 				display: block;
 				position: relative;
-				padding: 1rem {
-					bottom: 0.5rem;
-				}
+				padding: 1rem;
 				background-color: white;
 				color: black;
 				@include linkIcon($dark_gray);
@@ -526,6 +536,138 @@ main {
 
 			.photo{
 				margin-right: 0;
+			}
+		}
+	}
+}
+
+.products{
+	padding: 30px 0;
+	background-color: white;
+
+	h3{
+		@include fontsize(18);
+		color: $dark_gray;
+	}
+
+	.products_name{
+		margin-bottom: 15px;
+		padding-bottom: 30px;
+		border-bottom: solid 1px $light_gray;
+
+		%mb0 {margin-bottom: 0;}
+
+		.name{
+			@extend %mb0;
+			@include fontsize(20);
+		}
+
+		.id{
+			@extend %mb0;
+			color: $dark_gray;
+		}
+	}
+
+	.slide_menu{
+		margin-bottom: 30px;
+		padding-bottom: 20px;
+		border-bottom: solid 1px $light_gray;
+
+		.photo{
+			img{
+				height: auto;
+				width: 100%;
+			}
+		}
+
+		.photo_item{
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content:flex-start;
+
+			p{
+				margin: 0{
+					right: 1px;
+					bottom: 1px;
+				}
+				line-height: 1px;
+
+				img{
+					height: 112px;
+					width: 112px;
+				}
+			}
+		}
+	}
+
+	.color_size{
+		%table_border{
+			border: solid 1px $light_gray;
+			border-collapse: collapse;
+			background-color: $basecolor;
+			text-align: center;
+		}
+		%table_width{
+			padding: 1em 0;
+			width: 33%;
+		}
+
+		table{
+			@extend %table_border;
+
+			th{
+				@extend %table_border;
+				@extend %table_width;
+			}
+
+			td{
+				@extend %table_border;
+				background-color: white;
+				@extend %table_width;
+			}
+
+			input[type="checkbox"]{
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.price_qty{
+		%mb0 {margin-bottom: 0};
+
+		div{
+		}
+
+		h3{
+			@extend %mb0;
+			width: 14rem;
+		}
+
+		p{
+			@extend %mb0;
+
+			input[type="text"]{
+				@extend %mb0;
+			}
+		}
+
+		.price{
+			h3{
+				text-transform: uppercase;
+			}
+
+			p{
+
+			}
+
+			.txt{
+				font-style: italic;
+
+				span{
+					@include fontsize(22);
+					color: $ruby;
+				}
 			}
 		}
 	}

@@ -57,6 +57,15 @@ $(document).ready(function(){
 	});
 });
 
+/* スライドショー */
+$(window).load(function(){
+	$(".slide_menu .photo_item img").click(function(){
+		var img_src = $(this).attr("src");
+		$(".slide_menu .photo img").attr("src", img_src);
+		return false;
+	});
+});
+
 /* ページトップ */
 $(document).ready(function(){
     $('#page_top').click(function () {
