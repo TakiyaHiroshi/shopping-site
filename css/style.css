@@ -278,7 +278,12 @@ header .sns_navi ul li {
 }
 .items_list .item .photo {
   display: inline-block;
+  width: 100%;
   margin-bottom: 10px;
+}
+.items_list .item .photo img {
+  width: 100%;
+  height: auto;
 }
 .items_list .item .description, .items_list .item footer p, footer .items_list .item p {
   margin-bottom: 25px;
@@ -288,6 +293,7 @@ header .sns_navi ul li {
 }
 .items_list .item a {
   display: block;
+  box-sizing: border-box;
   color: black;
 }
 .items_list .item a:hover {
@@ -441,6 +447,11 @@ header .sns_navi ul li {
   }
   #sub_navi .item_contents .photo {
     margin-right: 0;
+  }
+}
+@media only screen and (max-width: 400px) {
+  #sub_navi .item_contents {
+    flex-direction: column;
   }
 }
 

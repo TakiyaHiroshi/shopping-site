@@ -60,6 +60,12 @@ $mbp_width : 700px;
 	}
 }
 
+@mixin minItemwidth {
+	@media only screen and (max-width: 400px) {
+		@content;
+	}
+}
+
 @mixin linkIcon($color: #fff, $rotate: 45) {
 	$rotate_degree: $rotate + deg;
 	&:before {
@@ -395,7 +401,7 @@ main {
 
 	.item{
 		display: inline-block;
-		box-sizing:  border-box;
+		box-sizing: border-box;
 		margin: 0 1px 1px 0;
 		padding: 20px 15px 0 20px;
 		width: 49%;
@@ -403,7 +409,13 @@ main {
 
 		.photo{
 			display: inline-block;
+			width: 100%;
 			margin-bottom: 10px;
+			
+			img{
+				width: 100%;
+				height: auto;
+			}
 		}
 
 		.description{
@@ -416,6 +428,7 @@ main {
 
 		a{
 			display: block;
+			box-sizing: border-box;
 			color: black;
 
 			&:hover{
@@ -569,6 +582,10 @@ main {
 			.photo{
 				margin-right: 0;
 			}
+		}
+		
+		@include minItemwidth{
+			flex-direction: column;
 		}
 	}
 }
