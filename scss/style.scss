@@ -18,6 +18,12 @@ $mbp_width : 700px;
 	font-size: ($size / $base) * 1rem;
 }
 
+@mixin largePhotowidth {
+	@media only screen and (min-width: 467px) {
+		@content;
+	}
+}
+
 @mixin SPwidth {
 	@media only screen and (max-width: 639px) {
 		@content;
@@ -87,6 +93,10 @@ a {
 	&:hover{
 		text-decoration: underline;
 	}
+}
+
+input[type="search"], input[type="text"] {
+	border-radius: 0;
 }
 
 header{
@@ -238,7 +248,10 @@ main {
 }
 
 .breadcrumbs{
+	border-bottom: solid 10px $basecolor;
+
 	ul{
+		margin-bottom: 0;
 		padding: 15px 20px;
 		display: flex;
 		flex-direction: row;
@@ -402,6 +415,7 @@ main {
 		}
 
 		a{
+			display: block;
 			color: black;
 
 			&:hover{
@@ -538,6 +552,12 @@ main {
 
 		.more {
 			margin-bottom: 0;
+
+			a{
+				&:hover{
+					opacity: 0.6;
+				}
+			}
 		}
 
 		@include PCwidth {
@@ -617,6 +637,11 @@ main {
 			@extend %mb0;
 			color: $dark_gray;
 		}
+
+		@include priceqtyBreakpoint{
+			display: flex;
+			justify-content: space-between;
+		}
 	}
 
 	.slide_menu{
@@ -628,6 +653,10 @@ main {
 			img{
 				height: auto;
 				width: 100%;
+
+				@include largePhotowidth{
+					width: 410px;
+				}
 			}
 		}
 
@@ -647,8 +676,30 @@ main {
 				img{
 					height: 112px;
 					width: 112px;
+
+					@include priceqtyBreakpoint{
+						height: 74px;
+						width: 74px;
+					}
+				}
+
+				a{
+					&:hover{
+						opacity: 0.6;
+					}
 				}
 			}
+
+			@include priceqtyBreakpoint{
+				justify-content: space-between;
+				width: 160px;
+			}
+		}
+
+		@include priceqtyBreakpoint{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
 		}
 	}
 
@@ -695,6 +746,7 @@ main {
 
 			input[type="text"]{
 				@extend %mb0;
+				text-align: right;
 			}
 		}
 
